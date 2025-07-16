@@ -143,12 +143,7 @@ test('변이 겹치는 사각형', () => {
     h: 100,
   };
   const result = overlay(rect1, rect2);
-  const expected = {
-    x: 100,
-    y: 0,
-    w: 0,
-    h: 100,
-  }
+  const expected = null;
   expect(result).toStrictEqual(expected);
 });
 
@@ -166,11 +161,6 @@ test('꼭짓점이 겹치는 사각형', () => {
     h: 100,
   };
   const result = overlay(rect1, rect2);
-  const expected = {
-    x: 100,
-    y: 100,
-    w: 0,
-    h: 0,
-  }
+  const expected = null;
   expect(result).toStrictEqual(expected);
 });

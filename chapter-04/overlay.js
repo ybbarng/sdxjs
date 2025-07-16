@@ -12,7 +12,7 @@ export function overlay(rect1, rect2) {
     h
   }
 
-  if (!isValidRectangle(result)) {
+  if (!isValidRectangle(result) || w * h === 0) {
     return null;
   }
   return result;
