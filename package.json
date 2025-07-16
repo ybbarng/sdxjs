@@ -12,5 +12,8 @@
   "dependencies": {
     "fs-extra-promise": "^1.0.1",
     "glob": "^11.0.2"
+  },
+  "devDependencies": {
+    "vitest": "^3.2.4"
   }
 }
