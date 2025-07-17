@@ -164,3 +164,26 @@ test('꼭짓점이 겹치는 사각형', () => {
   const expected = null;
   expect(result).toStrictEqual(expected);
 });
+
+test('완전히 겹치는 사각형', () => {
+  const rect1 = {
+    x: 0,
+    y: 0,
+    w: 100,
+    h: 100,
+  };
+  const rect2 = {
+    x: 0,
+    y: 0,
+    w: 100,
+    h: 100,
+  };
+  const result = overlay(rect1, rect2);
+  const expected = {
+    x: 0,
+    y: 0,
+    w: 100,
+    h: 100,
+  };
+  expect(result).toStrictEqual(expected);
+});
