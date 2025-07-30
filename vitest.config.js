@@ -7,5 +7,6 @@ export default defineConfig({
       '**/*.test.js',
       '**/test/test-*.js' // Chapter 5
     ],
+    globals: true,
   },
 })
