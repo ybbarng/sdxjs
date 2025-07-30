@@ -1,6 +1,6 @@
 import fs from 'fs-extra-promise'
 
-import hashExisting from './hash-existing-async.js'
+import hashExisting from './hash-existing-promise.js'
 import findNew from './check-existing-files.js'
 
 const backup = async (src, dst, timestamp = null) => {
