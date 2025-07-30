@@ -1,41 +1,31 @@
 // [main]
-import fs from 'fs-extra-promise'
-import glob from 'glob-promise'
+import fs from 'fs/promises'             // fs-extra-promise 대신 표준 promises API 사용
+import { glob } from 'glob'              // glob v11: 구조분해 할당
 import crypto from 'crypto'
 
-const hashExisting = (rootDir) => {
+const hashExisting = async (rootDir) => {
   const pattern = `${rootDir}/**/*`
-  return new Promise((resolve, reject) => {
-    glob(pattern, {})
-      .then(matches => Promise.all(
-        matches.map(path => statPath(path))))
-      .then(pairs => pairs.filter(
-        ([path, stat]) => stat.isFile()))
-      .then(pairs => Promise.all(
-        pairs.map(([path, stat]) => readPath(path))))
-      .then(pairs => Promise.all(
-        pairs.map(([path, content]) => hashPath(path, content))))
-      .then(pairs => resolve(pairs))
-      .catch(err => reject(err))
-  })
+  const matches = await glob(pattern, {})          // glob 자체가 Promise 지원
+
+  const stats = await Promise.all(matches.map(path => statPath(path)))
+  const files = stats.filter(([_, stat]) => stat.isFile())
+
+  const contents = await Promise.all(files.map(([path, _]) => readPath(path)))
+  const hashes = contents.map(([path, content]) => hashPath(path, content))
+
+  return hashes
 }
 // [/main]
 
 // [helpers]
-const statPath = (path) => {
-  return new Promise((resolve, reject) => {
-    fs.statAsync(path)
-      .then(stat => resolve([path, stat]))
-      .catch(err => reject(err))
-  })
+const statPath = async (path) => {
+  const stat = await fs.stat(path)
+  return [path, stat]
 }
 
-const readPath = (path) => {
-  return new Promise((resolve, reject) => {
-    fs.readFileAsync(path, 'utf-8')
-      .then(content => resolve([path, content]))
-      .catch(err => reject(err))
-  })
+const readPath = async (path) => {
+  const content = await fs.readFile(path, 'utf-8')
+  return [path, content]
 }
 // [/helpers]
 
@@ -49,3 +39,4 @@ const hashPath = (path, content) => {
 // [/hashPath]
 
 export default hashExisting
+
