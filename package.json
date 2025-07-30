@@ -4,14 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "vitest"
+    "test": "mocha */test/test-*.js",
+    "vitest": "vitest"
   },
   "author": "",
   "license": "ISC",
   "type": "module",
   "dependencies": {
     "fs-extra-promise": "^1.0.1",
-    "glob": "^11.0.2"
+    "glob": "^11.0.2",
+    "mocha": "^11.7.1"
   },
   "devDependencies": {
     "vitest": "^3.2.4"
