@@ -1,4 +1,4 @@
-import fs from 'fs-extra-promise'
+import fs from 'fs/promises'
 
 import hashExisting from './hash-existing-promise.js'
 import findNew from './check-existing-files.js'
@@ -19,7 +19,7 @@ const copyFiles = async (dst, needToCopy) => {
   const promises = Object.keys(needToCopy).map(hash => {
     const srcPath = needToCopy[hash]
     const dstPath = `${dst}/${hash}.bck`
-    fs.copyFileAsync(srcPath, dstPath)
+    return fs.copyFile(srcPath, dstPath)
   })
   return Promise.all(promises)
 }
@@ -29,7 +29,7 @@ const saveManifest = async (dst, timestamp, pathHash) => {
   const content = pathHash.map(
     ([path, hash]) => `${path},${hash}`).join('\n')
   const manifest = `${dst}/${timestamp}.csv`
-  fs.writeFileAsync(manifest, content, 'utf-8')
+  return fs.writeFile(manifest, content, 'utf-8')
 }
 
 export default backup
