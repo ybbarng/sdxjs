@@ -1,3 +1,6 @@
+import microtime from 'microtime'
+import sizeof from 'object-sizeof'
+
 export const buildRows = (nRows, labels) => {
   const result = []
   for (let iR = 0; iR < nRows; iR += 1) {
@@ -19,4 +22,11 @@ export const buildCols = (nRows, labels) => {
     }
   })
   return result
+}
+
+export const timeAndSize = (func, ...params) => {
+  const before = microtime.now()
+  const result = func(...params)
+  const after = microtime.now()
+  return [after - before, sizeof(result)]
 }
