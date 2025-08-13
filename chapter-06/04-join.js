@@ -50,16 +50,22 @@ export function joinIndex(left, right) {
   return out;
 }
 
-const left =  [
-  { key: 'A', left: 'a1' },
-  { key: 'B', left: 'b1' },
-  { key: 'C', left: 'c1' },
-]
-const right = [
-  { key: 'A', right: 'a2' },
-  { key: 'A', right: 'a3' },
-  { key: 'B', right: 'b2' },
-]
+function main() {
+  const left =  [
+    { key: 'A', left: 'a1' },
+    { key: 'B', left: 'b1' },
+    { key: 'C', left: 'c1' },
+  ]
+  const right = [
+    { key: 'A', right: 'a2' },
+    { key: 'A', right: 'a3' },
+    { key: 'B', right: 'b2' },
+  ]
 
-console.log("naive: ", joinNaive(left, right))
-console.log("index: ", joinIndex(left, right))
+  console.log("naive: ", joinNaive(left, right))
+  console.log("index: ", joinIndex(left, right))
+}
+
+if (import.meta.main) {
+    main();
+}
