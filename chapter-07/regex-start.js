@@ -1,14 +1,15 @@
 import RegexBase from './regex-base.js'
 
 class RegexStart extends RegexBase {
-  constructor (chars) {
-    super()
-    this.chars = chars
-  }
-
   _match (text, start) {
-    return undefined // FIXME
+    if (start !== 0) {
+      return undefined;
+    }
+    if (this.rest === null) {
+      return 0
+    }
+    return this.rest._match(text, start)
   }
 }
 
-export default (chars) => new RegexStart(chars)
+export default (rest = null) => new RegexStart(rest)
