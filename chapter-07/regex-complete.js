@@ -6,6 +6,8 @@ import Start from './regex-start.js'
 
 const main = () => {
   const tests = [
+    ['a*ab', 'ab', true, Any(Lit('a'), Lit('a', Lit('b')))],
+    ['a*ab', 'aab', true, Any(Lit('a'), Lit('a', Lit('b')))],
     ['a', 'a', true, Lit('a')],
     ['b', 'a', false, Lit('b')],
     ['a', 'ab', true, Lit('a')],
@@ -28,7 +30,7 @@ const main = () => {
     ['a(b|c)d', 'xabdy', true,
       Lit('a', Alt(Lit('b'), Lit('c')), Lit('d'))],
     ['a(b|c)d', 'xabady', false,
-      Lit('a', Alt(Lit('b'), Lit('c')), Lit('d'))]
+      Lit('a', Alt(Lit('b'), Lit('c')), Lit('d'))],
   ]
   tests.forEach(([pattern, text, expected, matcher]) => {
     const actual = matcher.match(text)
