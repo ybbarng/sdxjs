@@ -4,8 +4,8 @@ class RegexBase {
   }
 
   match (text) {
-    for (let i = 0; i < text.length; i += 1) {
-      if (this._match(text, i)) {
+    for (let i = 0; i <= text.length; i += 1) {
+      if (this._match(text, i) !== undefined) {
         return true
       }
     }
