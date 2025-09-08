@@ -1,14 +1,27 @@
 import RegexBase from './regex-base.js'
 
 class RegexAlt extends RegexBase {
-  constructor (chars) {
-    super()
-    this.chars = chars
+  constructor (left, right, rest) {
+    super(rest)
+    this.left = left
+    this.right = right
   }
 
   _match (text, start) {
-    return undefined // FIXME
+    for (const pat of [this.left, this.right]) {
+      const afterPat = pat._match(text, start)
+      if (afterPat !== undefined) {
+        if (this.rest === null) {
+          return afterPat
+        }
+        const afterRest = this.rest._match(text, afterPat)
+        if (afterRest !== undefined) {
+          return afterRest
+        }
+      }
+    }
+    return undefined
   }
 }
 
-export default (chars) => new RegexAlt(chars)
+export default (left, right, rest = null) => new RegexAlt(left, right, rest)
