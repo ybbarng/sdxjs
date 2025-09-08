@@ -7,7 +7,14 @@ class RegexLit extends RegexBase {
   }
 
   _match (text, start) {
-    return undefined // FIXME
+    const nextIndex = start + this.chars.length;
+    if (nextIndex > text.length) {
+      return undefined
+    }
+    if (text.slice(start, nextIndex) !== this.chars) {
+      return undefined
+    }
+    return nextIndex
   }
 }
 
