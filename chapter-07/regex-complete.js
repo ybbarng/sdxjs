@@ -8,6 +8,7 @@ const main = () => {
   const tests = [
     ['a*ab', 'ab', true, Any(Lit('a'), Lit('a', Lit('b')))],
     ['a*ab', 'aab', true, Any(Lit('a'), Lit('a', Lit('b')))],
+    ['^a*$', 'aaa', true, Start(Any(Lit('a'), End()))],
     ['a', 'a', true, Lit('a')],
     ['b', 'a', false, Lit('b')],
     ['a', 'ab', true, Lit('a')],
