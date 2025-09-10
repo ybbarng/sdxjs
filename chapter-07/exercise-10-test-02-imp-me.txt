@@ -1,0 +1,13 @@
+Scenario: "/a*...a*b/" X "a".repeat(N) -> false
+Ns=[10], m=[1, 2, 3, 4, 6, 8, 10, 12, 16, 20, 24, 32, 40, 48, 64, 80, 96, 128, 160, 192, 256, 320, 384, 512, 640, 768, 1024, 1280, 1536, 2048, 2560, 3072, 4096]
+(N=10, m=1) | pass | 0.15 ms | total=132 | byType={ Any:11, Lit:121 }
+(N=10, m=2) | pass | 0.13 ms | total=638 | byType={ Any:77, Lit:561 }
+(N=10, m=3) | pass | 0.28 ms | total=2354 | byType={ Any:363, Lit:1991 }
+(N=10, m=4) | pass | 0.84 ms | total=7359 | byType={ Any:1364, Lit:5995 }
+(N=10, m=6) | pass | 2.43 ms | total=51260 | byType={ Any:12375, Lit:38885 }
+(N=10, m=8) | pass | 7.63 ms | total=260326 | byType={ Any:75581, Lit:184745 }
+(N=10, m=10) | pass | 29.24 ms | total=1058136 | byType={ Any:352715, Lit:705421 }
+(N=10, m=12) | pass | 101.91 ms | total=3640198 | byType={ Any:1352077, Lit:2288121 }
+(N=10, m=16) | pass | 798.51 ms | total=29910453 | byType={ Any:13037894, Lit:16872559 }
+(N=10, m=20) | pass | 4640.79 ms | total=173376633 | byType={ Any:84672314, Lit:88704319 }
+(N=10, m=24) | pass | 20954.48 ms | total=784384680 | byType={ Any:417225899, Lit:367158781 }

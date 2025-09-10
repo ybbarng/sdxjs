@@ -1,0 +1,35 @@
+Scenario: "/a*...a*b/" X "a".repeat(N) -> false
+Ns=[10], m=[1, 2, 3, 4, 6, 8, 10, 12, 16, 20, 24, 32, 40, 48, 64, 80, 96, 128, 160, 192, 256, 320, 384, 512, 640, 768, 1024, 1280, 1536, 2048, 2560, 3072, 4096]
+(N=10, m=1) | pass | 0.16 ms | total=88 | byType={ Any:11, Lit:77 }
+(N=10, m=2) | pass | 0.06 ms | total=165 | byType={ Any:22, Lit:143 }
+(N=10, m=3) | pass | 0.10 ms | total=242 | byType={ Any:33, Lit:209 }
+(N=10, m=4) | pass | 2.25 ms | total=319 | byType={ Any:44, Lit:275 }
+(N=10, m=6) | pass | 0.15 ms | total=473 | byType={ Any:66, Lit:407 }
+(N=10, m=8) | pass | 0.16 ms | total=627 | byType={ Any:88, Lit:539 }
+(N=10, m=10) | pass | 0.32 ms | total=781 | byType={ Any:110, Lit:671 }
+(N=10, m=12) | pass | 0.08 ms | total=935 | byType={ Any:132, Lit:803 }
+(N=10, m=16) | pass | 0.11 ms | total=1243 | byType={ Any:176, Lit:1067 }
+(N=10, m=20) | pass | 0.19 ms | total=1551 | byType={ Any:220, Lit:1331 }
+(N=10, m=24) | pass | 0.21 ms | total=1859 | byType={ Any:264, Lit:1595 }
+(N=10, m=32) | pass | 0.24 ms | total=2475 | byType={ Any:352, Lit:2123 }
+(N=10, m=40) | pass | 3.11 ms | total=3091 | byType={ Any:440, Lit:2651 }
+(N=10, m=48) | pass | 0.92 ms | total=3707 | byType={ Any:528, Lit:3179 }
+(N=10, m=64) | pass | 1.31 ms | total=4939 | byType={ Any:704, Lit:4235 }
+(N=10, m=80) | pass | 0.79 ms | total=6171 | byType={ Any:880, Lit:5291 }
+(N=10, m=96) | pass | 0.77 ms | total=7403 | byType={ Any:1056, Lit:6347 }
+(N=10, m=128) | pass | 1.08 ms | total=9867 | byType={ Any:1408, Lit:8459 }
+(N=10, m=160) | pass | 4.39 ms | total=12331 | byType={ Any:1760, Lit:10571 }
+(N=10, m=192) | pass | 1.42 ms | total=14795 | byType={ Any:2112, Lit:12683 }
+(N=10, m=256) | pass | 2.42 ms | total=19723 | byType={ Any:2816, Lit:16907 }
+(N=10, m=320) | pass | 2.66 ms | total=24651 | byType={ Any:3520, Lit:21131 }
+(N=10, m=384) | pass | 3.33 ms | total=29579 | byType={ Any:4224, Lit:25355 }
+(N=10, m=512) | pass | 2.99 ms | total=39435 | byType={ Any:5632, Lit:33803 }
+(N=10, m=640) | pass | 4.00 ms | total=49291 | byType={ Any:7040, Lit:42251 }
+(N=10, m=768) | pass | 4.15 ms | total=59147 | byType={ Any:8448, Lit:50699 }
+(N=10, m=1024) | pass | 5.52 ms | total=78859 | byType={ Any:11264, Lit:67595 }
+(N=10, m=1280) | pass | 12.44 ms | total=98571 | byType={ Any:14080, Lit:84491 }
+(N=10, m=1536) | pass | 11.92 ms | total=118283 | byType={ Any:16896, Lit:101387 }
+(N=10, m=2048) | pass | 10.84 ms | total=157707 | byType={ Any:22528, Lit:135179 }
+(N=10, m=2560) | pass | 14.43 ms | total=197131 | byType={ Any:28160, Lit:168971 }
+(N=10, m=3072) | pass | 20.55 ms | total=236555 | byType={ Any:33792, Lit:202763 }
+(N=10, m=4096) | pass | 21.74 ms | total=315403 | byType={ Any:45056, Lit:270347 }
