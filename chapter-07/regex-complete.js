@@ -6,6 +6,7 @@ import Start from './regex-start.js'
 
 const main = () => {
   const tests = [
+    ['a*a*a*b', 'aaaaaaaaaaaab', true, Any(Lit('a'), Any(Lit('a'), Any(Lit('a'), Lit('b'))))],
     ['a*ab', 'ab', true, Any(Lit('a'), Lit('a', Lit('b')))],
     ['a*ab', 'aab', true, Any(Lit('a'), Lit('a', Lit('b')))],
     ['^a*$', 'aaa', true, Start(Any(Lit('a'), End()))],
