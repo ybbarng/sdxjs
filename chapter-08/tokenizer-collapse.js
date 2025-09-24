@@ -36,7 +36,7 @@ export default tokenize
 
 const combineOrPush = (soFar, character, location) => {
   const topIndex = soFar.length - 1
-  if ((soFar.length === 0) || (soFar[topIndex].token !== 'Lit')) {
+  if ((soFar.length === 0) || (soFar[topIndex].kind !== 'Lit')) {
     soFar.push({ kind: 'Lit', value: character, loc: location })
   } else {
     soFar[topIndex].value += character
