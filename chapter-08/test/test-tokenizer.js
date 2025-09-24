@@ -1,6 +1,6 @@
 import assert from 'assert'
 
-import tokenize from './tokenizer.js'
+import tokenize from '../tokenizer.js'
 
 describe('tokenizes correctly', async () => {
   it('tokenizes a single character', () => {
