@@ -150,4 +150,16 @@ describe('tokenizes correctly', async () => {
       { kind: 'End', loc: 16 }
     ])
   })
+
+  it('tokenizes AnyLazy', () => {
+    assert.deepStrictEqual(tokenize('*?'), [
+      { kind: 'AnyLazy', loc: 0 }
+    ])
+    assert.deepStrictEqual(tokenize('ab*?c'), [
+      { kind: 'Lit', value: 'a', loc: 0 },
+      { kind: 'Lit', value: 'b', loc: 1 },
+      { kind: 'AnyLazy', loc: 2 },
+      { kind: 'Lit', value: 'c', loc: 4 }
+    ])
+  })
 })
