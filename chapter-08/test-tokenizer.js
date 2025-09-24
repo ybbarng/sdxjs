@@ -29,6 +29,106 @@ describe('tokenizes correctly', async () => {
     ])
   })
 
+  // [omit]
+  it('tokenizes circumflex not at start', () => {
+    assert.deepStrictEqual(tokenize('a^b'), [
+      { kind: 'Lit', value: 'a', loc: 0 },
+      { kind: 'Lit', value: '^', loc: 1 },
+      { kind: 'Lit', value: 'b', loc: 2 }
+    ])
+  })
+
+  it('tokenizes start anchor alone', () => {
+    assert.deepStrictEqual(tokenize('$'), [
+      { kind: 'End', loc: 0 }
+    ])
+  })
+
+  it('tokenizes end anchor preceded by characters', () => {
+    assert.deepStrictEqual(tokenize('a$'), [
+      { kind: 'Lit', value: 'a', loc: 0 },
+      { kind: 'End', loc: 1 }
+    ])
+  })
+
+  it('tokenizes dollar sign not at end', () => {
+    assert.deepStrictEqual(tokenize('a$b'), [
+      { kind: 'Lit', value: 'a', loc: 0 },
+      { kind: 'Lit', value: '$', loc: 1 },
+      { kind: 'Lit', value: 'b', loc: 2 }
+    ])
+  })
+
+  it('tokenizes repetition alone', () => {
+    assert.deepStrictEqual(tokenize('*'), [
+      { kind: 'Any', loc: 0 }
+    ])
+  })
+
+  it('tokenizes repetition in string', () => {
+    assert.deepStrictEqual(tokenize('a*b'), [
+      { kind: 'Lit', value: 'a', loc: 0 },
+      { kind: 'Any', loc: 1 },
+      { kind: 'Lit', value: 'b', loc: 2 }
+    ])
+  })
+
+  it('tokenizes repetition at end of string', () => {
+    assert.deepStrictEqual(tokenize('a*'), [
+      { kind: 'Lit', value: 'a', loc: 0 },
+      { kind: 'Any', loc: 1 }
+    ])
+  })
+
+  it('tokenizes alternation alone', () => {
+    assert.deepStrictEqual(tokenize('|'), [
+      { kind: 'Alt', loc: 0 }
+    ])
+  })
+
+  it('tokenizes alternation in string', () => {
+    assert.deepStrictEqual(tokenize('a|b'), [
+      { kind: 'Lit', value: 'a', loc: 0 },
+      { kind: 'Alt', loc: 1 },
+      { kind: 'Lit', value: 'b', loc: 2 }
+    ])
+  })
+
+  it('tokenizes alternation at start of string', () => {
+    assert.deepStrictEqual(tokenize('|a'), [
+      { kind: 'Alt', loc: 0 },
+      { kind: 'Lit', value: 'a', loc: 1 }
+    ])
+  })
+
+  it('tokenizes the start of a group alone', () => {
+    assert.deepStrictEqual(tokenize('('), [
+      { kind: 'GroupStart', loc: 0 }
+    ])
+  })
+
+  it('tokenizes the start of a group in a string', () => {
+    assert.deepStrictEqual(tokenize('a(b'), [
+      { kind: 'Lit', value: 'a', loc: 0 },
+      { kind: 'GroupStart', loc: 1 },
+      { kind: 'Lit', value: 'b', loc: 2 }
+    ])
+  })
+
+  it('tokenizes the end of a group alone', () => {
+    assert.deepStrictEqual(tokenize(')'), [
+      { kind: 'GroupEnd', loc: 0 }
+    ])
+  })
+
+  it('tokenizes the end of a group at the end of a string', () => {
+    assert.deepStrictEqual(tokenize('a)'), [
+      { kind: 'Lit', value: 'a', loc: 0 },
+      { kind: 'GroupEnd', loc: 1 }
+    ])
+  })
+
+  // [/omit]
   it('tokenizes a complex expression', () => {
     assert.deepStrictEqual(tokenize('^a*(bcd|e^)*f$gh$'), [
       { kind: 'Start', loc: 0 },
